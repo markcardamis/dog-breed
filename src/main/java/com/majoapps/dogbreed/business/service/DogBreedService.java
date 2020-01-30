@@ -88,7 +88,7 @@ public class DogBreedService {
                 if (UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()) != null) {   
                     dogBreedEntity.setName(UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()));
                     URL photoURL = awsService.storeImageInS3(
-                        UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()) + ".jpg",
+                        UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()),
                         dogBreedResponse.getMessage()
                     );  
                     dogBreedEntity.setStorageLocation(photoURL.toString());
