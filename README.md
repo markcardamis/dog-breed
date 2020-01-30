@@ -1,4 +1,4 @@
-# I need to eat
+# Dog Breed
 An API to retrieve a random dog breed.
 
 ## Getting Started
