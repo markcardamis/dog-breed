@@ -3,6 +3,7 @@ package com.majoapps.dogbreed.business.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import com.majoapps.dogbreed.business.domain.DogBreedDto;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
-
-import com.majoapps.dogbreed.business.domain.DogBreedDto;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RestTemplateServiceTest {

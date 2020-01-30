@@ -8,13 +8,17 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
+import com.majoapps.dogbreed.business.domain.DogBreedDto;
+import com.majoapps.dogbreed.business.domain.DogBreedResponse;
+import com.majoapps.dogbreed.data.entity.DogBreed;
+import com.majoapps.dogbreed.data.repository.DogBreedRepository;
+import com.majoapps.dogbreed.exception.ResourceNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
@@ -25,12 +29,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import com.majoapps.dogbreed.business.domain.DogBreedDto;
-import com.majoapps.dogbreed.business.domain.DogBreedResponse;
-import com.majoapps.dogbreed.data.entity.DogBreed;
-import com.majoapps.dogbreed.data.repository.DogBreedRepository;
-import com.majoapps.dogbreed.exception.ResourceNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DogBreedServiceTest {
