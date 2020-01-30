@@ -76,7 +76,7 @@ public class DogBreedService {
     }
 
     public DogBreed saveRandomDogBreed() {
-        DogBreedDto dogBreedResponse;
+        DogBreedDto dogBreedResponse; 
         try {
             dogBreedResponse = restTemplateService.getRandomDog();
             List<DogBreed> dogBreedListResponse = dogBreedRepository
@@ -87,8 +87,8 @@ public class DogBreedService {
             if (dogBreedListResponse.isEmpty()) { //add new Dog Breed as it doesn't exist
                 if (UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()) != null) {   
                     dogBreedEntity.setName(UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()));
-                    URL photoURL = awsService.addFile(
-                        UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()),
+                    URL photoURL = awsService.storeImageInS3(
+                        UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()) + ".jpg",
                         dogBreedResponse.getMessage()
                     );  
                     dogBreedEntity.setStorageLocation(photoURL.toString());

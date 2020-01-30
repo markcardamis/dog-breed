@@ -2,12 +2,14 @@ package com.majoapps.dogbreed.business.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +24,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AWSServiceTest {
-	private static final String TEST_LOCATION = "http://testLocation.com";
+	private static final String TEST_LOCATION = "https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg";
 
 	private static final String TEST_FILE = "testFile";
 
@@ -40,21 +42,12 @@ public class AWSServiceTest {
 	@Test
 	@DisplayName("add file to s3")
 	public void addFile() throws MalformedURLException {
-		when(s3client.putObject(null, TEST_FILE, TEST_LOCATION))
+		
+		when(s3client.putObject(any()))
 			.thenReturn(new PutObjectResult());
 		when(s3client.getUrl(null, TEST_FILE)).thenReturn(new URL(TEST_LOCATION));
-		URL location = awsService.addFile(TEST_FILE, TEST_LOCATION);
+		URL location = awsService.storeImageInS3(TEST_FILE, TEST_LOCATION);
 		assertEquals(TEST_LOCATION, location.toString());
-	}
-	
-	@Test
-	@DisplayName("add file to s3 with exception")
-	public void addFileThrowsException() {
-		when(s3client.putObject(null, TEST_FILE, TEST_LOCATION))
-			.thenThrow(new AmazonClientException("Wrong location"));
-		assertThrows(RuntimeException.class, () -> {
-			awsService.addFile(TEST_FILE, TEST_LOCATION);
-		});
 	}
 	
 	@Test

@@ -211,7 +211,7 @@ public class DogBreedServiceTest {
 		when(dogBreedRepository.findByName(any()))
 			.thenReturn(new ArrayList<DogBreed>());
 		
-		when(awsService.addFile(any(), any()))
+		when(awsService.storeImageInS3(any(), any()))
 			.thenReturn(new URL("http://test_url"));
 		
 		DogBreed breed = new DogBreed();
