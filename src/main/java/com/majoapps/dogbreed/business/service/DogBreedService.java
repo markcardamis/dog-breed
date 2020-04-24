@@ -80,7 +80,7 @@ public class DogBreedService {
         try {
             dogBreedResponse = restTemplateService.getRandomDog();
             List<DogBreed> dogBreedListResponse = dogBreedRepository
-                .findByName(dogBreedResponse.getMessage());
+                .findByName(UrlParser.dogNameFromUrl(dogBreedResponse.getMessage()));
 
             DogBreed dogBreedEntity = new DogBreed();
         
